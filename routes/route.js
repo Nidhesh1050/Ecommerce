@@ -24,7 +24,7 @@ const upload = multer({ storage });
 // User controller
 router.post("/register", storeController.register);
 router.post("/login", storeController.login);
-router.get("/profile",authenticateToken, storeController.profile);
+router.get("/profile", storeController.profile);
 
 
 // Product controller

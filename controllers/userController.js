@@ -9,6 +9,12 @@ exports.register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(passwordHash, 10);
 
     try {
+
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+          return res.status(200).json({ message: 'User already exists',user:[] });
+      }
+
         const registerData = await User.create({
             name,
             email,
@@ -42,7 +48,7 @@ exports.login = async (req, res) => {
         email: user.email,
         role: user.role
       };
-      const token = jwt.sign(userData, SECRET_KEY, { expiresIn: '1h' });
+      const token = jwt.sign(userData, SECRET_KEY, { expiresIn: '7d' });
   
       res.status(200).json({ message: "Login successful", user:userData, token });
     } catch (error) {
