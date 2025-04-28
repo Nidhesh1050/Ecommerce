@@ -9,13 +9,13 @@ exports.register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(passwordHash, 10);
 
     try {
-        const seller = await User.create({
+        const registerData = await User.create({
             name,
             email,
             role,
             passwordHash: hashedPassword,
         });
-        res.status(201).json(seller);
+        res.status(200).json({ message: "Register successful", user:registerData });
     } catch (error) {
         res.status(500).json({ error: 'User not register, server error' });
     }

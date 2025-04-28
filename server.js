@@ -26,8 +26,7 @@ mongoose.connect('mongodb://localhost:27017/shopData')
 });
 
 
- // Start server after DB connects
  const PORT = process.env.PORT || 3001;
  app.listen(PORT, () => {
-     console.log(`Server is running on port ${PORT} by Nidhesh`);
+     console.log(`Server is running on port ${PORT}`);
  });
